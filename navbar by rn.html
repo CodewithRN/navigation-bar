@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@codewith_harsh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d, rgb(41, 133, 59));
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: grid;
+            place-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        nav {
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 90%;
+            max-width: 1000px;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            justify-content:center;
+            position: relative;
+        }
+
+        ul li {
+            display:flex;
+            place-content: center;
+            
+        }
+
+        .logo {
+            color: yellow;
+            cursor:pointer;
+        }
+
+        .menu {
+            color: #fff;
+            padding: 0.5rem 1rem;
+            position: relative;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu:hover {
+            background-color:rgba(255, 255, 255, 0.1);
+            color: #fdbb2d;
+        }
+
+        .menu::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #fdbb2d;
+            border-radius: 5px;
+            transform: scaleX(0);
+            transition: all 0.3s ease;
+            bottom: 0;
+            left: 0;
+        }
+
+        .menu:hover::before {
+            transform: scaleX(1);
+        }
+
+        .meta-link {
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            display: inline-flex;
+            gap: 5px;
+            left: 10px;
+            padding: 10px 20px;
+            position: fixed;
+            text-decoration: none;
+            transition: background-color 300ms, border-color 300ms;
+            z-index: 10000;
+            color: #fff;
+        }
+
+        .meta-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .meta-link >span {
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .meta-link>span {
+            font-family: 'Arial', sans-serif;
+            transition: color 300ms;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .search-bar {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #fdbb2d;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s;
+        }
+
+        .search-bar::placeholder {
+            color: #ddd;
+        }
+
+        .search-bar:focus {
+            border-color: #fdbb2d;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(253, 187, 45, 0.4);
+        }
+
+        .dropdown {
+            position:center;
+            display: inline-block;
+            margin-top: -12px;
+        }
+        .dropdown:hover {
+            background-color:rgba(255, 255, 255, 0.1);
+            color: #fdbb2d;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            min-width: 160px;
+            z-index: 1000;
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fdbb2d;
+            background-color: #3f3216;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: scaleY(1);
+            background-color: rgb(207, 207, 43);
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0.5rem;
+            }
+
+            ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<h1>NavBar-by-rn</h1>
+<body>
+    <nav>
+        <ul>
+            <li class="logo"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0m-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"></path>
+                </svg>
+            </li>
+            <li><a href="" class="menu">Home</a></li>
+            <li><a href="" class="menu">Mobile</a></li>
+            <li><a href="" class="menu">Tablet</a></li>
+            <li><a href="" class="menu">Laptop</a></li>
+            <li class="dropdown">
+                <a href="" class="menu">More</a>
+                <div class="dropdown-content">
+                    <div class="dropdown-submenu">
+                        <a href="">About Us</a>
+                        <div class="dropdown-submenu-content">
+                            <a href="">Company</a>
+                            <a href="">Team</a>
+                            <a href="">Careers</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-submenu">
+                        <a href="">Services</a>
+                        <div class="dropdown-submenu-content">
+                            <a href="">Consulting</a>
+                            <a href="">Development</a>
+                            <a href="">Design</a>
+                        </div>
+                    </div>
+                    <a href="">Contact</a>
+                    <a href="">Blog</a>
+                    <a href="">Resources</a>
+                </div>
+            </li>
+        </ul>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search...">
+        </div>
+    </nav>
+</body>
+</html>
